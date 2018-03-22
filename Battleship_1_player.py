@@ -5,12 +5,11 @@ grid=[]
 for _ in range(N):
     grid.append(input())
 
-def find_tiret():
+def find_hyphens():
     res=[]
     for i in range(N):
         for j in range(N):
-            if grid[i][j]=='-': 
-                bol=True
+            if grid[i][j]=='-':
                 res.append([i,j])
     return res
 
@@ -19,7 +18,7 @@ def find_h():
     count=0
     for i in range(N):
         for j in range(N):
-            if grid[i][j]=='h': 
+            if grid[i][j]=='h':
                 count+=1
                 res.append([i,j])
     return count,res
@@ -42,7 +41,7 @@ def dfs_x(grid, start):
                 pass
     return visited
 
-def dfs_h(grid, start):
+def dfs_y(grid, start):
     visited, stack = set(), [start]
     while stack:
         vertex = stack.pop()
@@ -59,16 +58,6 @@ def dfs_h(grid, start):
             except:
                 pass
     return visited
-
-def find_middle_x(t):
-    vals=dfs_x(grid, t)
-    vals_y=[v[1] for v in vals]
-    return math.floor(min(vals_y)+(max(vals_y)-min(vals_y))/2)
-
-def find_middle_h(t):
-    vals=dfs_h(grid, t)
-    vals_x=[v[0] for v in vals]
-    return math.floor(min(vals_x)+(max(vals_x)-min(vals_x))/2)
 
 c,l=find_h()
 p=False
@@ -97,7 +86,7 @@ if c==1 :
             print(i,j+1)
             p=True
     except:pass
-    
+
 elif c>1:
     seti,setj=[set(),set()]
     bateauEnLigne=False
@@ -110,7 +99,7 @@ elif c>1:
         val=list(seti)[0]
     else:
         val=list(setj)[0]
-        
+    
     if bateauEnLigne:
         valj=[v[1] for v in l]
         minj=min(valj)
@@ -143,27 +132,17 @@ elif c>1:
                 p=True
         except:
             pass
-    
-    
+
+
 else:
-    tirets = find_tiret()
-    count = len(tirets)
-    candidates = random.sample(tirets, math.floor(count/5))
-    max_long_x=0
-    x_max_x,x_max_y=[0,0]
-    max_long_y=0
-    y_max_y,y_max_x=[0,0]
-    for v in candidates:
+    hyphens = find_hyphens()
+    count = len(hyphens)
+    max_long_x_y=0
+    max_x,max_y=[0,0]
+    for v in hyphens:
         long_x=len(dfs_x(grid, (v[0],v[1])))
-        long_y=len(dfs_x(grid, (v[0],v[1])))
-        if long_x>max_long_x:
-            max_long_x=long_x
-            x_max_x,x_max_y=[v[0],v[1]]
-        if long_y>max_long_y:
-            max_long_y=long_y
-            y_max_x,y_max_y=[v[0],v[1]]
-    if max_long_x>max_long_y:
-        print(x_max_x,find_middle_x((x_max_x,x_max_y)))
-    else:
-        print(find_middle_h((y_max_x,y_max_y)),y_max_y)
-            
+        long_y=len(dfs_y(grid, (v[0],v[1])))
+        if long_x+long_y>max_long_x_y:
+            max_long_x_y=long_x+long_y
+            max_x,max_y=[v[0],v[1]]
+    print(max_x,max_y)
