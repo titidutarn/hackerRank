@@ -137,12 +137,15 @@ elif c>1:
 else:
     hyphens = find_hyphens()
     count = len(hyphens)
-    max_long_x_y=0
-    max_x,max_y=[0,0]
-    for v in hyphens:
-        long_x=len(dfs_x(grid, (v[0],v[1])))
-        long_y=len(dfs_y(grid, (v[0],v[1])))
-        if long_x+long_y>max_long_x_y:
-            max_long_x_y=long_x+long_y
-            max_x,max_y=[v[0],v[1]]
-    print(max_x,max_y)
+    if count>85:
+        print(' '.join([str(v) for v in random.choice(hyphens)]))
+    else:
+        max_long_x_y=0
+        max_x,max_y=[0,0]
+        for v in hyphens:
+            long_x=len(dfs_x(grid, (v[0],v[1])))
+            long_y=len(dfs_y(grid, (v[0],v[1])))
+            if long_x+long_y>max_long_x_y:
+                max_long_x_y=long_x+long_y
+                max_x,max_y=[v[0],v[1]]
+        print(max_x,max_y)
