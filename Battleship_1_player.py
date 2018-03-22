@@ -85,22 +85,23 @@ if c==1 :
         if grid[i][j+1]=='-' and p==False:
             print(i,j+1)
             p=True
-    except:pass
+    except:
+        pass
 
 elif c>1:
     seti,setj=[set(),set()]
-    bateauEnLigne=False
+    boatInLign=False
     val=0
     for v in l:
         seti.add(v[0])
         setj.add(v[1])
     if len(seti)<len(setj):
-        bateauEnLigne=True
+        boatInLign=True
         val=list(seti)[0]
     else:
         val=list(setj)[0]
     
-    if bateauEnLigne:
+    if boatInLign:
         valj=[v[1] for v in l]
         minj=min(valj)
         maxj=max(valj)
