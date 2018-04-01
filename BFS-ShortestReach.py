@@ -5,20 +5,20 @@ from collections import defaultdict
 
 def bfs(n, m, graph, start, w):
     
-    distance = dict()
-    for i in range(1,n+1) : distance[i]=-1
-    distance[start]=0
+    distances = dict()
+    for i in range(1,n+1) : distances[i]=-1
+    distances[start]=0
     
     queue = [start]
     while queue:
         node = queue.pop(0)
         for neighbor in graph[node]:
-            if distance[neighbor]==-1:
-                distance[neighbor]=distance[node]+w
+            if distances[neighbor]==-1:
+                distances[neighbor]=distances[node]+w
                 queue.append(neighbor)
                 
-    del distance[start]
-    return distance.values()
+    del distances[start]
+    return distances.values()
     
 
 if __name__ == "__main__":
