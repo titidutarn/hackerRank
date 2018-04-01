@@ -12,10 +12,10 @@ object Solution {
         fw.close()
     }
     
-    // grouping the set by size of the string inputed
+    // grouping the set by size of the string inputted
     // filtering sole groups and apply count_per_group1 on each groups then reduce
-    def uniqueRecycledPairs(A: Array[Int]): Int = {
-        val groups_by_size : Map[Int, List[String]] = A.map(_.toString).toList.distinct.groupBy(_.size).filter(_._1>1)
+    def uniqueRecycledPairs(L: Array[Int]): Int = {
+        val groups_by_size : Map[Int, List[String]] = L.map(_.toString).toList.distinct.groupBy(_.size).filter(_._1>1)
         val res1 : Int = groups_by_size.foldLeft(0)((acc, x) => acc + count_per_group1(x._2))
         return res1
     }
