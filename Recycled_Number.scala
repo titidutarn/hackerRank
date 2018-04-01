@@ -48,7 +48,7 @@ object Solution {
         val lists_and_index : List[(Int, List[Char])]= X.map(x=>(x.indexOf(X(0)(0)),x))
         val res3 : Int = lists_and_index.map(x => rotatedView(x._2,x._1))
                                  .groupBy(x=>x).mapValues(_.size).values
-                                 .foldLeft(0)( (acc, a) => if (a>0) acc + a*(a-1)/2 else acc)
+                                 .foldLeft(0)( (acc, a) => acc + a*(a-1)/2)
         return res3
     }
     
@@ -71,7 +71,7 @@ object Solution {
         return count
     }
     
-    // i-shift of a list with last terms comming front
+    // function to shift an array (first terms push back to the end) 
     def rotatedView(list : List[Char],i:Int) = { list.drop(i)++list.take(i) }
     
 }
