@@ -2,8 +2,8 @@
 
 import os
 import sys
-from collections import defaultdict
 import copy
+from collections import defaultdict
 
 def dfs(graph, start):
     visited, stack = set(), [start]
@@ -19,10 +19,10 @@ if __name__ == '__main__':
     graph = defaultdict(set)
     edges = []
     for _ in range(n_edges):
-        edges_t = list(map(int, input().split()))
-        edges.append(edges_t)
-        graph[edges_t[0]].add(edges_t[1])
-        graph[edges_t[1]].add(edges_t[0])
+        edge = list(map(int, input().split()))
+        edges.append(edge)
+        graph[edge[0]].add(edge[1])
+        graph[edge[1]].add(edge[0])
     
     count=0
     for i in range(n_edges):
