@@ -4,19 +4,16 @@ import sys
 from collections import defaultdict
 
 def bfs(n, m, graph, start, w):
-    
     distances = dict()
     for i in range(1,n+1) : distances[i]=-1
     distances[start]=0
-    
     queue = [start]
     while queue:
         node = queue.pop(0)
         for neighbor in graph[node]:
             if distances[neighbor]==-1:
                 distances[neighbor]=distances[node]+w
-                queue.append(neighbor)
-                
+                queue.append(neighbor)    
     del distances[start]
     return distances.values()
     
